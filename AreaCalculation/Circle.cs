@@ -42,6 +42,6 @@ namespace Troshkin.AreaCalculation
                 !Double.IsPositiveInfinity(_r) &&
                 !Double.IsNegativeInfinity(_r) &&
                 !Double.IsNaN(_r) &&
-                _r > 0;
+                _r > 0 + Double.Epsilon;
     }
 }

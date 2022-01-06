@@ -45,30 +45,30 @@ namespace Troshkin.AreaCalculation
         {
             var kathetVariant1 = SumSquaredKathets(_a, _b);
             var hypotenuseVariant1 = SquaredHypotenuse(_c);
-            if (kathetVariant1 == hypotenuseVariant1) return true;
+            if (kathetVariant1 - hypotenuseVariant1 <= Double.Epsilon) return true;
 
             var kathetVariant2 = SumSquaredKathets(_a, _c);
             var hypotenuseVariant2 = SquaredHypotenuse(_b);
-            if (kathetVariant2 == hypotenuseVariant2) return true;
+            if (kathetVariant2 - hypotenuseVariant2 <= Double.Epsilon) return true;
 
             var kathetVariant3 = SumSquaredKathets(_c, _b);
             var hypotenuseVariant3 = SquaredHypotenuse(_a);
-            if (kathetVariant3 == hypotenuseVariant3) return true;
+            if (kathetVariant3 - hypotenuseVariant3 <= Double.Epsilon) return true;
 
             return false;
         }
         public bool IsFigureCorrect()
         {
-            if (_a <= 0 || _b <= 0 || _c <= 0) return false;
+            if (_a <= 0 + Double.Epsilon || _b <= 0 + Double.Epsilon || _c <= 0 + Double.Epsilon) return false;
             ThrowOverflowExceptionIfIncorrectDouble(_a, _b, _c);
 
             var sum1 = _a + _b;
             var sum2 = _a + _c;
             var sum3 = _b + _c;
             ThrowOverflowExceptionIfIncorrectDouble(sum1, sum2, sum3);
-            if (sum1 < _c ||
-                sum2 < _b ||
-                sum3 < _a)
+            if (sum1 < _c - Double.Epsilon ||
+                sum2 < _b - Double.Epsilon ||
+                sum3 < _a - Double.Epsilon)
             {
                 return false;
             }
